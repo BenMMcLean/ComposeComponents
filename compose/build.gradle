@@ -82,6 +82,11 @@ centralPortal {
                 email = "emily@mclean.lgbt"
             }
         }
+        scm {
+            connection = "scm:git:https://github.com/{{REPOSITORY}}"
+            developerConnection = "scm:git:https://github.com/{{REPOSITORY}}"
+            url = "https://github.com/{{REPOSITORY}}"
+        }
     }
 }
 
