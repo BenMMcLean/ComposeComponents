@@ -2,7 +2,11 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id 'maven-publish'
+    alias(libs.plugins.sonatypePublish)
 }
+
+description "Standard Jetpack Compose components"
+group "cl.emilym.component"
 
 android {
     namespace 'cl.emilym.component.compose'
@@ -77,4 +81,24 @@ publishing {
             }
         }
     }
+}
+
+centralPortal {
+    username = findProperty("sonatypeUsername")
+    password = findProperty("sonatypePassword")
+    pom {
+        url = "https://github.com/{{REPOSITORY}}"
+        developers {
+            developer {
+                name = "Emily McLean"
+                email = "emily@mclean.lgbt"
+            }
+        }
+    }
+}
+
+signing {
+    def signingKey = findProperty("signingKey")
+    def signingPassword = findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKey, signingPassword)
 }
