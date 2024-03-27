@@ -51,7 +51,9 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: -Pversion=${{ needs.version.outputs.version }} ${{ matrix.module }}:build
+          arguments: ${{ matrix.module }}:build
+        env:
+          ORG_GRADLE_PROJECT_version: ${{ needs.version.outputs.version }}
       - name: Rename AAR
         run: mv ./${{ matrix.module }}/build/outputs/aar/ComposeComponents-${{ needs.version.outputs.version }}.aar ./${{ matrix.module }}.aar
       - uses: actions/upload-artifact@master
@@ -177,7 +179,7 @@ jobs:
           find: "{{REPOSITORY}}"
           replace: "${{ github.repository }}"
           regex: false
-      - name: Publish to GitHub Packages
+      - name: Publish to Sonatype
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: -Pversion=${{ needs.version.outputs.version }} ${{ matrix.module }}:publishToCentralPortal --no-daemon
