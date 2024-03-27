@@ -36,7 +36,8 @@ jobs:
     strategy:
       matrix:
         module: ["compose", "activity"]
-    needs: version
+    needs:
+      - version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -111,6 +112,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+    if: github.event_name != 'pull_request'
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
@@ -149,6 +151,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    if: github.event_name != 'pull_request'
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
@@ -173,7 +176,7 @@ jobs:
       - name: Publish to GitHub Packages
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: -Pversion=${{ needs.version.outputs.version }} ${{ matrix.module }}:publishToSonatype --no-daemon
+          arguments: -Pversion=${{ needs.version.outputs.version }} ${{ matrix.module }}:publishToCentralPortal --no-daemon
         env:
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
           ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
