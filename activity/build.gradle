@@ -90,10 +90,7 @@ centralPortal {
         }
     }
     versionMapping {
-        usage('java-api') {
-            fromResolutionOf('runtimeClasspath')
-        }
-        usage('java-runtime') {
+        allVariants {
             fromResolutionResult()
         }
     }
