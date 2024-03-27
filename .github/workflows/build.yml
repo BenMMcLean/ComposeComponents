@@ -52,7 +52,7 @@ jobs:
         with:
           arguments: -Pversion=${{ steps.gitversion.outputs.semVer }} ${{ matrix.module }}:build
       - name: Rename AAR
-        run: mv ./${{ matrix.module }}/build/outputs/aar/${{ matrix.module }}-release.aar ./${{ matrix.module }}.aar
+        run: mv ./${{ matrix.module }}/build/outputs/aar/ComposeComponents-release.aar ./${{ matrix.module }}.aar
       - uses: actions/upload-artifact@master
         with:
           name: ${{ matrix.module }}-aar
