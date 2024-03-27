@@ -70,6 +70,12 @@ centralPortal {
     name = "activity"
     pom {
         url = "https://github.com/{{REPOSITORY}}"
+        licenses {
+            license {
+                name = "MIT"
+                url = "https://opensource.org/license/mit"
+            }
+        }
         developers {
             developer {
                 name = "Emily McLean"
@@ -83,5 +89,4 @@ signing {
     def signingKey = findProperty("signingKey")
     def signingPassword = findProperty("signingPassword")
     useInMemoryPgpKeys(signingKey, signingPassword)
-    sign publishing.publications
 }
