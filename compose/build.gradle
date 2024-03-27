@@ -62,29 +62,6 @@ dependencies {
     androidTestImplementation libs.androidx.espresso.core
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://example.com")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-            }
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            groupId = "mc.emilym.component"
-            artifactId = "compose"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-        }
-    }
-}
-
 centralPortal {
     publishingType = PublishingType.USER_MANAGED
     username = findProperty("sonatypeUsername")
