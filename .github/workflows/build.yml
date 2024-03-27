@@ -137,8 +137,7 @@ jobs:
           ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.PGP_SECRET }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.PGP_PASSPHRASE }}
-      - run: ls ./${{ matrix.module }}/build/bundles
       - uses: actions/upload-artifact@master
         with:
           name: ${{ matrix.module }}-bundle
-          path: ./${{ matrix.module }}/build/${{ matrix.module }}-bundle.zip
+          path: ./${{ matrix.module }}/build/${{ matrix.module }}-${{ needs.version.outputs.version }}-bundle.zip
