@@ -51,9 +51,9 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: -Pversion=${{ steps.gitversion.outputs.semVer }} ${{ matrix.module }}:build
+          arguments: -Pversion=${{ needs.version.outputs.version }} ${{ matrix.module }}:build
       - name: Rename AAR
-        run: mv ./${{ matrix.module }}/build/outputs/aar/ComposeComponents-${{ steps.gitversion.outputs.semVer }}.aar ./${{ matrix.module }}.aar
+        run: mv ./${{ matrix.module }}/build/outputs/aar/ComposeComponents-${{ needs.version.outputs.version }}.aar ./${{ matrix.module }}.aar
       - uses: actions/upload-artifact@master
         with:
           name: ${{ matrix.module }}-aar
