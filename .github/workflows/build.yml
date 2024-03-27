@@ -109,7 +109,6 @@ jobs:
         module: [ "compose", "activity" ]
     needs:
       - version
-      - build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -123,12 +122,6 @@ jobs:
           distribution: 'temurin'
           server-id: github
           settings-path: ${{ github.workspace }}
-      - uses: actions/download-artifact@master
-        with:
-          name: ${{ matrix.module }}-aar
-          path: ./${{ matrix.module }}/build/outputs/aar/
-      - name: Rename AAR
-        run: mv ./${{ matrix.module }}/build/outputs/aar/${{ matrix.module }}.aar ./${{ matrix.module }}/build/outputs/aar/${{ matrix.module }}-release.aar
       - name: Set publishing location
         uses: jacobtomlinson/gha-find-replace@v3
         with:
