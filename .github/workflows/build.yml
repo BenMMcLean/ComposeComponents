@@ -98,7 +98,7 @@ jobs:
         with:
           upload_url: ${{ needs.release.outputs.upload_url }}
           asset_path: ./${{ matrix.module }}.aar
-          asset_name: ${{ matrix.module }}-v${{ steps.gitversion.outputs.semVer }}.aar
+          asset_name: ${{ matrix.module }}-v${{ needs.version.outputs.version }}.aar
           asset_content_type: application/zip
   publish-package:
     strategy:
@@ -126,6 +126,12 @@ jobs:
           path: ./${{ matrix.module }}/build/outputs/aar/
       - name: Rename AAR
         run: mv ./${{ matrix.module }}/build/outputs/aar/${{ matrix.module }}.aar ./${{ matrix.module }}/build/outputs/aar/${{ matrix.module }}-release.aar
+      - name: Set publishing location
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "https://example.com"
+          replace: "https://maven.pkg.github.com/${{ github.repository }}"
+          regex: false
       - name: Publish to GitHub Packages
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
