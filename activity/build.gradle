@@ -85,8 +85,7 @@ publishing {
 }
 
 centralPortal {
-    username = findProperty("sonatypeUsername")
-    password = findProperty("sonatypePassword")
+    name = "activity"
     pom {
         url = "https://github.com/{{REPOSITORY}}"
         developers {
