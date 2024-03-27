@@ -70,7 +70,7 @@ publishing {
     publications {
         gpr(MavenPublication) {
             groupId = "mc.emilym.component"
-            artifactId = "activity"
+            artifactId = "compose"
 
             afterEvaluate {
                 from(components["release"])
