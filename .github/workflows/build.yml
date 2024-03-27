@@ -74,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ needs.version.outputs.version }}
-          release_name: cloud-${{ needs.version.outputs.version }}
+          release_name: Release ${{ needs.version.outputs.version }}
           draft: false
           prerelease: ${{ github.ref != 'refs/heads/main' }}
   upload-to-release:
@@ -123,9 +123,9 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: ${{ matrix.module }}-aar
-          path: ./
+          path: ./${{ matrix.module }}/build/outputs/aar/
       - name: Rename AAR
-        run: mv ./${{ matrix.module }}.aar ./${{ matrix.module }}/build/outputs/aar/${{ matrix.module }}-release.aar
+        run: mv ./${{ matrix.module }}/build/outputs/aar/${{ matrix.module }}.aar ./${{ matrix.module }}/build/outputs/aar/${{ matrix.module }}-release.aar
       - name: Publish to GitHub Packages
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
