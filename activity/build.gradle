@@ -89,6 +89,14 @@ centralPortal {
             url = "https://github.com/{{REPOSITORY}}"
         }
     }
+    versionMapping {
+        usage('java-api') {
+            fromResolutionOf('runtimeClasspath')
+        }
+        usage('java-runtime') {
+            fromResolutionResult()
+        }
+    }
 }
 
 signing {
