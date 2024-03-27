@@ -63,7 +63,6 @@ dependencies {
 }
 
 centralPortal {
-    publishingType = PublishingType.USER_MANAGED
     username = findProperty("sonatypeUsername")
     password = findProperty("sonatypePassword")
     name = "compose"
