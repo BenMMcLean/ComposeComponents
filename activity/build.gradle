@@ -2,7 +2,11 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id 'maven-publish'
+    alias(libs.plugins.sonatypePublish)
 }
+
+description "A basis for Jetpack Compose driven activities"
+group "cl.emilym.component"
 
 android {
     namespace 'cl.emilym.component.activity'
@@ -78,4 +82,22 @@ publishing {
             }
         }
     }
+}
+
+centralPortal {
+    pom {
+        url = "https://github.com/{{REPOSITORY}}"
+        developers {
+            developer {
+                name = "Emily McLean"
+                email = "emily@mclean.lgbt"
+            }
+        }
+    }
+}
+
+signing {
+    def signingKey = findProperty("signingKey")
+    def signingPassword = findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKey, signingPassword)
 }
