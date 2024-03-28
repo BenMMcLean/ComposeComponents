@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 
-abstract class UnifiedFragment: Fragment(), UnifiedView
-
-abstract class UnifiedComposeFragment: UnifiedFragment(), UnifiedComposeView {
+abstract class ComposeFragment: Fragment(),
+    cl.emilym.component.activity.ComposeView {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,7 +17,7 @@ abstract class UnifiedComposeFragment: UnifiedFragment(), UnifiedComposeView {
     ): View? {
         return ComposeView(requireContext()).apply {
             setContent {
-                GlobalComposeProvider.hook(this@UnifiedComposeFragment) {
+                GlobalComposeProvider.hook {
                     Root()
                 }
             }
