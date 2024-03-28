@@ -22,16 +22,18 @@ fun ErrorWidget(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(0.5.rdp)
     ) {
-        Text(stringResource(ErrorWidgetConfig.errorTitleResource), style = MaterialTheme.typography.titleMedium)
-        (message ?: exception?.message)?.let {
-            Text(it)
+        Text(LocalErrorWidgetConfig.current.errorTitle, style = MaterialTheme.typography.titleMedium)
+        LocalErrorWidgetConfig.current.genericMessage?.let {
+            Text(it, style = MaterialTheme.typography.bodyMedium)
+        } ?: (message ?: exception?.message)?.let {
+            Text(it, style = MaterialTheme.typography.bodyMedium)
         }
         retry?.let {
             StandardButton(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = { retry() }
             ) {
-                Text(stringResource(ErrorWidgetConfig.retryButtonResource))
+                Text(LocalErrorWidgetConfig.current.retryButtonText, style = MaterialTheme.typography.labelMedium)
             }
         }
     }

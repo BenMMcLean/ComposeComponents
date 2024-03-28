@@ -1,12 +1,12 @@
 package cl.emilym.component.compose.error
 
 import androidx.annotation.StringRes
+import androidx.compose.runtime.staticCompositionLocalOf
 
-object ErrorWidgetConfig {
+data class ErrorWidgetConfig(
+    val errorTitle: String = "Something went wrong",
+    val retryButtonText: String = "Retry",
+    val genericMessage: String? = null
+)
 
-    @StringRes
-    var errorTitleResource: Int = 0
-    @StringRes
-    var retryButtonResource: Int = 0
-
-}
+val LocalErrorWidgetConfig = staticCompositionLocalOf { ErrorWidgetConfig() }
