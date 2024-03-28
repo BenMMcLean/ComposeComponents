@@ -126,11 +126,11 @@ jobs:
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: | 
-            -Pversion=${{ needs.version.outputs.version }} \
-            -Ppom.url="https://github.com/${{ github.repository }}" \
-            -Ppom.scm.connection="scm:git:git://github.com/${{ github.repository }}" \
-            -Ppom.scm.developerConnection="scm:git:ssh://github.com/${{ github.repository }}" \
-            -Ppom.scm.url="https://github.com/${{ github.repository }}" \
+            -Pversion=${{ needs.version.outputs.version }} 
+            -Ppom.url="https://github.com/${{ github.repository }}" 
+            -Ppom.scm.connection="scm:git:git://github.com/${{ github.repository }}" 
+            -Ppom.scm.developerConnection="scm:git:ssh://github.com/${{ github.repository }}" 
+            -Ppom.scm.url="https://github.com/${{ github.repository }}" 
             ${{ matrix.module }}:publishToCentralPortal --no-daemon
         env:
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
