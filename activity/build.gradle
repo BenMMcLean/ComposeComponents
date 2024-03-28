@@ -66,7 +66,7 @@ dependencies {
 centralPortal {
     username = findProperty("sonatypeUsername")
     password = findProperty("sonatypePassword")
-    name = "compose"
+    name = "activity"
     pom {
         url = findProperty("pom.url")
         licenses {
