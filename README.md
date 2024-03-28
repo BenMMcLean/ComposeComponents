@@ -4,8 +4,10 @@
 
 A set of standard components for Jetpack Compose. This library is still in very early development, so expect significant changes to the API between versions.
 
-## Usage
-All the modules of this library are distributed separately through Maven Central. Just import them and you should be good to go:
+## Installation
+![Stable](https://img.shields.io/github/v/release/BenMMcLean/ComposeComponents?label=Stable)
+![Preview](https://img.shields.io/github/v/release/BenMMcLean/ComposeComponents?label=Preview&include_prereleases)
+
 ```
 implementation "cl.emilym.component:compose:<latest>"
 implementation "cl.emilym.component:activity:<latest>"
