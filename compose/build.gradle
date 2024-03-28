@@ -1,5 +1,3 @@
-import net.thebugmc.gradle.sonatypepublisher.PublishingType
-
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -67,23 +65,23 @@ centralPortal {
     password = findProperty("sonatypePassword")
     name = "compose"
     pom {
-        url = "https://github.com/{{REPOSITORY}}"
+        url = findProperty("pom.url")
         licenses {
             license {
-                name = "MIT"
-                url = "https://opensource.org/license/mit"
+                name = findProperty("pom.license.name")
+                url = findProperty("pom.license.url")
             }
         }
         developers {
             developer {
-                name = "Emily McLean"
-                email = "emily@mclean.lgbt"
+                name = findProperty("pom.developer.name")
+                email = findProperty("pom.developer.email")
             }
         }
         scm {
-            connection = "scm:git:https://github.com/{{REPOSITORY}}"
-            developerConnection = "scm:git:https://github.com/{{REPOSITORY}}"
-            url = "https://github.com/{{REPOSITORY}}"
+            connection = findProperty("pom.scm.connection")
+            developerConnection = findProperty("pom.scm.developerConnection")
+            url = findProperty("pom.scm.url")
         }
     }
     versionMapping {
