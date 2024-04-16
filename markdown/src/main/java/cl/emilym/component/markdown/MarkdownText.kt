@@ -29,13 +29,12 @@ fun MarkdownText(
 
     AndroidView(
         factory = { ctx ->
-            TextView(ctx).apply{
-                setTextSize(TypedValue.COMPLEX_UNIT_SP, style.fontSize.value)
-                setTextColor(colour.toArgb())
-            }
+            TextView(ctx)
         },
         modifier = modifier
     ){
+        it.setTextSize(TypedValue.COMPLEX_UNIT_SP, style.fontSize.value)
+        it.setTextColor(colour.toArgb())
         (markwon ?: Markwon
             .builder(context)
             .usePlugin(object: AbstractMarkwonPlugin() {
